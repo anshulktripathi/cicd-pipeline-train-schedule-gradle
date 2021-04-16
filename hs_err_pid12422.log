@@ -1,0 +1,271 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 65536 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2799), pid=12422, tid=0x00007f2ad0d7e700
+#
+# JRE version: OpenJDK Runtime Environment (8.0_282-b08) (build 1.8.0_282-b08)
+# Java VM: OpenJDK 64-Bit Server VM (25.282-b08 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f2acc115800):  JavaThread "C2 CompilerThread0" daemon [_thread_in_vm, id=12430, stack(0x00007f2ad0c7f000,0x00007f2ad0d7f000)]
+
+Stack: [0x00007f2ad0c7f000,0x00007f2ad0d7f000],  sp=0x00007f2ad0d7a5a0,  free space=1005k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xb5db9d]  VMError::report_and_die()+0x15d
+V  [libjvm.so+0x5079aa]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*)+0xaa
+V  [libjvm.so+0x93fe38]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0xd8
+V  [libjvm.so+0x9379ce]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x2e
+V  [libjvm.so+0xb5a7a4]  VirtualSpace::expand_by(unsigned long, bool)+0x1b4
+V  [libjvm.so+0x61eccc]  CodeHeap::expand_by(unsigned long)+0x6c
+V  [libjvm.so+0x48efb6]  CodeCache::allocate(int, bool)+0x46
+V  [libjvm.so+0x4874ab]  BufferBlob::create(char const*, int)+0x8b
+V  [libjvm.so+0x48bfb1]  CodeBuffer::initialize(int, int)+0x21
+V  [libjvm.so+0x9544a2]  Compile::init_buffer(unsigned int*)+0x212
+V  [libjvm.so+0x95bc41]  Compile::Output()+0x351
+V  [libjvm.so+0x4af6a8]  Compile::Code_Gen()+0x4e8
+V  [libjvm.so+0x4b336e]  Compile::Compile(ciEnv*, C2Compiler*, ciMethod*, int, bool, bool, bool)+0x116e
+V  [libjvm.so+0x4088f0]  C2Compiler::compile_method(ciEnv*, ciMethod*, int)+0x1d0
+V  [libjvm.so+0x4bacb2]  CompileBroker::invoke_compiler_on_method(CompileTask*)+0x8c2
+V  [libjvm.so+0x4bb9c8]  CompileBroker::compiler_thread_loop()+0x4c8
+V  [libjvm.so+0xb05192]  JavaThread::thread_main_inner()+0x212
+V  [libjvm.so+0x93cdc2]  java_start(Thread*)+0xf2
+C  [libpthread.so.0+0x7ea5]  start_thread+0xc5
+
+
+Current CompileTask:
+C2: 617781 5066       4       com.google.common.collect.AbstractIndexedListIterator::hasNext (17 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f2a94005000 JavaThread "Exec process Thread 3" [_thread_in_native, id=12512, stack(0x00007f2a7a9bf000,0x00007f2a7aac0000)]
+  0x00007f2a94004000 JavaThread "Exec process Thread 2" [_thread_in_native, id=12506, stack(0x00007f2a7aac0000,0x00007f2a7abc1000)]
+  0x00007f2a94001800 JavaThread "process reaper" daemon [_thread_in_native, id=12505, stack(0x00007f2abc023000,0x00007f2abc05c000)]
+  0x00007f2ab8260800 JavaThread "Exec process" [_thread_blocked, id=12503, stack(0x00007f2a7abc1000,0x00007f2a7acc2000)]
+  0x00007f2ab857c800 JavaThread "Build operations Thread 2" [_thread_blocked, id=12501, stack(0x00007f2a7acc2000,0x00007f2a7adc3000)]
+  0x00007f2ab853f000 JavaThread "Task worker for ':'" [_thread_blocked, id=12500, stack(0x00007f2aa817f000,0x00007f2aa8280000)]
+  0x00007f2ab853e000 JavaThread "Cache worker for Build Output Cleanup Cache (/home/cloud_user/cicd-pipeline-train-schedule-gradle/.gradle/buildOutputCleanup)" [_thread_blocked, id=12499, stack(0x00007f2aa807e000,0x00007f2aa817f000)]
+  0x00007f2ab853d000 JavaThread "Cache worker for task history cache (/home/cloud_user/cicd-pipeline-train-schedule-gradle/.gradle/4.6/taskHistory)" [_thread_blocked, id=12498, stack(0x00007f2aa8680000,0x00007f2aa8781000)]
+  0x00007f2ab84eb800 JavaThread "Build operations" [_thread_blocked, id=12497, stack(0x00007f2aa8a82000,0x00007f2aa8b83000)]
+  0x00007f2ab81b4800 JavaThread "Cache worker for Artifact transforms cache (/home/cloud_user/.gradle/caches/transforms-1)" [_thread_blocked, id=12496, stack(0x00007f2aa93b8000,0x00007f2aa94b9000)]
+  0x00007f2ab8101000 JavaThread "Cache worker for file hash cache (/home/cloud_user/cicd-pipeline-train-schedule-gradle/.gradle/4.6/fileHashes)" [_thread_blocked, id=12493, stack(0x00007f2aa8981000,0x00007f2aa8a82000)]
+  0x00007f2ab8100000 JavaThread "Stdin handler" [_thread_blocked, id=12492, stack(0x00007f2aa98bb000,0x00007f2aa99bc000)]
+  0x00007f2ab80fe800 JavaThread "Asynchronous log dispatcher for DefaultDaemonConnection: socket connection from /0:0:0:0:0:0:0:1:37530 to /0:0:0:0:0:0:0:1:51056" [_thread_blocked, id=12491, stack(0x00007f2aa99bc000,0x00007f2aa9abd000)]
+  0x00007f2a8400a800 JavaThread "Daemon worker Thread 2" [_thread_blocked, id=12490, stack(0x00007f2abc15d000,0x00007f2abc25e000)]
+  0x00007f2a84004000 JavaThread "Cancel handler" [_thread_blocked, id=12489, stack(0x00007f2abc45e000,0x00007f2abc55f000)]
+  0x00007f2a84008000 JavaThread "Handler for socket connection from /0:0:0:0:0:0:0:1:37530 to /0:0:0:0:0:0:0:1:51056" [_thread_in_native, id=12488, stack(0x00007f2abc05c000,0x00007f2abc15d000)]
+  0x00007f2a8c032800 JavaThread "Daemon Thread 2" [_thread_blocked, id=12487, stack(0x00007f2abc55f000,0x00007f2abc660000)]
+  0x00007f2a80166800 JavaThread "File lock request listener" [_thread_in_native, id=12445, stack(0x00007f2aa94b9000,0x00007f2aa95ba000)]
+  0x00007f2a80134000 JavaThread "Cache worker for file hash cache (/home/cloud_user/.gradle/caches/4.6/fileHashes)" [_thread_blocked, id=12444, stack(0x00007f2aa95ba000,0x00007f2aa96bb000)]
+  0x00007f2acd129800 JavaThread "Daemon periodic checks" [_thread_blocked, id=12435, stack(0x00007f2abc660000,0x00007f2abc761000)]
+  0x00007f2acd103000 JavaThread "Incoming local TCP Connector on port 37530" [_thread_in_native, id=12434, stack(0x00007f2abc768000,0x00007f2abc869000)]
+  0x00007f2acc122800 JavaThread "Service Thread" daemon [_thread_blocked, id=12432, stack(0x00007f2ad0a7c000,0x00007f2ad0b7d000)]
+  0x00007f2acc117800 JavaThread "C1 CompilerThread1" daemon [_thread_in_vm, id=12431, stack(0x00007f2ad0b7e000,0x00007f2ad0c7e000)]
+=>0x00007f2acc115800 JavaThread "C2 CompilerThread0" daemon [_thread_in_vm, id=12430, stack(0x00007f2ad0c7f000,0x00007f2ad0d7f000)]
+  0x00007f2acc107000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=12429, stack(0x00007f2ad0d7f000,0x00007f2ad0e80000)]
+  0x00007f2acc0da800 JavaThread "Finalizer" daemon [_thread_blocked, id=12428, stack(0x00007f2ad0e80000,0x00007f2ad0f81000)]
+  0x00007f2acc0d6000 JavaThread "Reference Handler" daemon [_thread_blocked, id=12427, stack(0x00007f2ad0f81000,0x00007f2ad1082000)]
+  0x00007f2acc04b800 JavaThread "main" [_thread_blocked, id=12425, stack(0x00007f2ad5375000,0x00007f2ad5475000)]
+
+Other Threads:
+  0x00007f2acc0cc000 VMThread [stack: 0x00007f2ad1083000,0x00007f2ad1183000] [id=12426]
+  0x00007f2acc137800 WatcherThread [stack: 0x00007f2ad097c000,0x00007f2ad0a7c000] [id=12433]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007f2acc048360] CodeCache_lock - owner thread: 0x00007f2acc115800
+[0x00007f2acc0499e0] Compile_lock - owner thread: 0x00007f2acc117800
+[0x00007f2acc049ae0] MethodCompileQueue_lock - owner thread: 0x00007f2acc117800
+
+heap address: 0x00000000c0000000, size: 1024 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ def new generation   total 14144K, used 9245K [0x00000000c0000000, 0x00000000c0f50000, 0x00000000d5550000)
+  eden space 12608K,  63% used [0x00000000c0000000, 0x00000000c07c7bf0, 0x00000000c0c50000)
+  from space 1536K,  83% used [0x00000000c0dd0000, 0x00000000c0f0f998, 0x00000000c0f50000)
+  to   space 1536K,   0% used [0x00000000c0c50000, 0x00000000c0c50000, 0x00000000c0dd0000)
+ tenured generation   total 31212K, used 26924K [0x00000000d5550000, 0x00000000d73cb000, 0x0000000100000000)
+   the space 31212K,  86% used [0x00000000d5550000, 0x00000000d6f9b1a0, 0x00000000d6f9b200, 0x00000000d73cb000)
+ Metaspace       used 45951K, capacity 46742K, committed 46976K, reserved 1089536K
+  class space    used 6204K, capacity 6488K, committed 6528K, reserved 1048576K
+
+Card table byte_map: [0x00007f2ad1d6e000,0x00007f2ad1f6f000] byte_map_base: 0x00007f2ad176e000
+
+Polling page: 0x00007f2ad5481000
+
+CodeCache: size=245760Kb used=14145Kb max_used=14146Kb free=231614Kb
+ bounds [0x00007f2abd000000, 0x00007f2abdde0000, 0x00007f2acc000000]
+ total_blobs=5375 nmethods=4624 adapters=661
+ compilation: enabled
+
+Compilation events (250 events):
+Event: 225.473 Thread 0x00007f2acc115800 4931       4       java.io.UnixFileSystem::resolve (27 bytes)
+Event: 225.474 Thread 0x00007f2acc115800 nmethod 4931 0x00007f2abdd84d50 code [0x00007f2abdd84ec0, 0x00007f2abdd84ff8]
+Event: 225.487 Thread 0x00007f2acc117800 4932       3       org.gradle.api.internal.file.collections.jdk7.Jdk7DirectoryWalker$1::preVisitDirectory (10 bytes)
+Event: 225.487 Thread 0x00007f2acc117800 nmethod 4932 0x00007f2abdd84850 code [0x00007f2abdd849c0, 0x00007f2abdd84c68]
+Event: 225.487 Thread 0x00007f2acc117800 4933       3       org.gradle.api.internal.file.collections.jdk7.Jdk7DirectoryWalker$1::preVisitDirectory (80 bytes)
+Event: 225.488 Thread 0x00007f2acc117800 nmethod 4933 0x00007f2abdd8b9d0 code [0x00007f2abdd8bbc0, 0x00007f2abdd8c4b8]
+Event: 225.488 Thread 0x00007f2acc117800 4934       3       java.util.LinkedList::push (6 bytes)
+Event: 225.488 Thread 0x00007f2acc117800 nmethod 4934 0x00007f2abdd8b590 code [0x00007f2abdd8b700, 0x00007f2abdd8b8e8]
+Event: 225.646 Thread 0x00007f2acc115800 4935       4       sun.security.provider.DigestBase::engineReset (33 bytes)
+Event: 225.647 Thread 0x00007f2acc115800 nmethod 4935 0x00007f2abdd89d50 code [0x00007f2abdd89ea0, 0x00007f2abdd89f98]
+Event: 225.672 Thread 0x00007f2acc115800 4936       4       java.math.BigInteger::<init> (81 bytes)
+Event: 225.683 Thread 0x00007f2acc115800 nmethod 4936 0x00007f2abdd8cbd0 code [0x00007f2abdd8cd80, 0x00007f2abdd8d878]
+Event: 225.699 Thread 0x00007f2acc115800 4937   !   4       com.google.common.cache.LocalCache$Segment::get (210 bytes)
+Event: 225.703 Thread 0x00007f2acc115800 nmethod 4937 0x00007f2abdd90210 code [0x00007f2abdd903c0, 0x00007f2abdd90778]
+Event: 225.704 Thread 0x00007f2acc115800 4938       4       java.util.LinkedHashMap::afterNodeRemoval (65 bytes)
+Event: 225.705 Thread 0x00007f2acc115800 nmethod 4938 0x00007f2abdd8c7d0 code [0x00007f2abdd8c920, 0x00007f2abdd8ca18]
+Event: 225.710 Thread 0x00007f2acc115800 4939       4       com.google.common.cache.LocalCache$LoadingValueReference::get (10 bytes)
+Event: 225.710 Thread 0x00007f2acc115800 nmethod 4939 0x00007f2abdd89a90 code [0x00007f2abdd89be0, 0x00007f2abdd89c78]
+Event: 225.716 Thread 0x00007f2acc115800 4940   !   4       com.google.common.util.concurrent.ExecutionList::execute (86 bytes)
+Event: 225.717 Thread 0x00007f2acc115800 nmethod 4940 0x00007f2abdd8e450 code [0x00007f2abdd8e5a0, 0x00007f2abdd8e7f8]
+Event: 225.717 Thread 0x00007f2acc115800 4941   !   4       com.google.common.util.concurrent.Uninterruptibles::getUninterruptibly (40 bytes)
+Event: 225.720 Thread 0x00007f2acc115800 nmethod 4941 0x00007f2abdd8fa50 code [0x00007f2abdd8fbe0, 0x00007f2abdd8fe78]
+Event: 225.720 Thread 0x00007f2acc115800 4942       4       org.gradle.internal.serialize.kryo.KryoBackedEncoder::writeLong (9 bytes)
+Event: 225.721 Thread 0x00007f2acc115800 nmethod 4942 0x00007f2abdd8dfd0 code [0x00007f2abdd8e120, 0x00007f2abdd8e2d8]
+Event: 225.722 Thread 0x00007f2acc115800 4943   !   4       com.google.common.cache.LocalCache$Segment::lockedGetOrLoad (433 bytes)
+Event: 225.724 Thread 0x00007f2acc117800 4944   !   3       java.util.concurrent.locks.AbstractQueuedSynchronizer::doAcquireInterruptibly (97 bytes)
+Event: 225.725 Thread 0x00007f2acc117800 nmethod 4944 0x00007f2abdd91250 code [0x00007f2abdd914a0, 0x00007f2abdd92058]
+Event: 225.787 Thread 0x00007f2acc115800 nmethod 4943 0x00007f2abdd97350 code [0x00007f2abdd97940, 0x00007f2abdd9acd8]
+Event: 225.787 Thread 0x00007f2acc115800 4945       4       com.google.common.cache.LocalCache$LocalManualCache$1::load (10 bytes)
+Event: 225.811 Thread 0x00007f2acc115800 nmethod 4945 0x00007f2abdda2410 code [0x00007f2abdda27a0, 0x00007f2abdda3b88]
+Event: 225.811 Thread 0x00007f2acc115800 4946   !   4       java.util.concurrent.ArrayBlockingQueue::poll (83 bytes)
+Event: 225.839 Thread 0x00007f2acc115800 nmethod 4946 0x00007f2abdda6790 code [0x00007f2abdda6aa0, 0x00007f2abdda81d8]
+Event: 225.839 Thread 0x00007f2acc115800 4947       4       org.gradle.cache.internal.btree.CachingBlockStore::attach (11 bytes)
+Event: 225.840 Thread 0x00007f2acc115800 nmethod 4947 0x00007f2abdd90dd0 code [0x00007f2abdd90f20, 0x00007f2abdd91098]
+Event: 225.848 Thread 0x00007f2acc115800 4948   !   4       java.io.FileInputStream::close (62 bytes)
+Event: 225.851 Thread 0x00007f2acc115800 nmethod 4948 0x00007f2abdd8ef50 code [0x00007f2abdd8f0c0, 0x00007f2abdd8f7c8]
+Event: 225.876 Thread 0x00007f2acc115800 4949       4       org.gradle.cache.internal.btree.ByteOutput::start (42 bytes)
+Event: 225.878 Thread 0x00007f2acc115800 nmethod 4949 0x00007f2abdd8e8d0 code [0x00007f2abdd8ea40, 0x00007f2abdd8ed08]
+Event: 225.890 Thread 0x00007f2acc115800 4950       4       org.gradle.cache.internal.btree.KeyHasher$MessageDigestStream::getChecksum (41 bytes)
+Event: 225.894 Thread 0x00007f2acc115800 nmethod 4950 0x00007f2abdd951d0 code [0x00007f2abdd95340, 0x00007f2abdd95658]
+Event: 225.894 Thread 0x00007f2acc117800 4951       3       com.google.common.collect.ObjectArrays::checkElementsNotNull (23 bytes)
+Event: 225.895 Thread 0x00007f2acc117800 nmethod 4951 0x00007f2abdd8a490 code [0x00007f2abdd8a680, 0x00007f2abdd8afd8]
+Event: 225.895 Thread 0x00007f2acc117800 4952       1       org.gradle.api.internal.changedetection.state.RegularFileSnapshot::getPath (5 bytes)
+Event: 225.895 Thread 0x00007f2acc117800 nmethod 4952 0x00007f2abdd8a1d0 code [0x00007f2abdd8a320, 0x00007f2abdd8a430]
+Event: 225.895 Thread 0x00007f2acc117800 4953       1       org.gradle.api.internal.changedetection.state.RegularFileSnapshot::getContent (5 bytes)
+Event: 225.895 Thread 0x00007f2acc117800 nmethod 4953 0x00007f2abdd97090 code [0x00007f2abdd971e0, 0x00007f2abdd972f0]
+Event: 225.895 Thread 0x00007f2acc117800 4954       3       org.gradle.api.internal.changedetection.state.AbstractNormalizedFileSnapshot::<init> (10 bytes)
+Event: 225.895 Thread 0x00007f2acc117800 nmethod 4954 0x00007f2abdd96c90 code [0x00007f2abdd96e00, 0x00007f2abdd96fd0]
+Event: 225.895 Thread 0x00007f2acc117800 4955       3       org.gradle.api.internal.changedetection.state.CollectingFileCollectionSnapshotBuilder::collectFileSnapshot (42 bytes)
+Event: 225.895 Thread 0x00007f2acc117800 nmethod 4955 0x00007f2abdd961d0 code [0x00007f2abdd963a0, 0x00007f2abdd96a28]
+Event: 225.895 Thread 0x00007f2acc117800 4957       3       com.google.common.collect.AbstractIndexedListIterator::hasNext (17 bytes)
+Event: 225.896 Thread 0x00007f2acc117800 nmethod 4957 0x00007f2abdd95e10 code [0x00007f2abdd95f80, 0x00007f2abdd96130]
+Event: 225.896 Thread 0x00007f2acc117800 4956       3       org.gradle.api.internal.changedetection.state.CollectingFileCollectionSnapshotBuilder::collectNormalizedFileSnapshot (30 bytes)
+Event: 225.896 Thread 0x00007f2acc117800 nmethod 4956 0x00007f2abdd94bd0 code [0x00007f2abdd94d60, 0x00007f2abdd950d8]
+Event: 225.896 Thread 0x00007f2acc117800 4958       3       org.gradle.api.internal.changedetection.state.OutputPathNormalizationStrategy::getNormalizedSnapshot (34 bytes)
+Event: 225.896 Thread 0x00007f2acc117800 nmethod 4958 0x00007f2abdd94250 code [0x00007f2abdd94400, 0x00007f2abdd949a8]
+Event: 225.896 Thread 0x00007f2acc117800 4962       1       com.google.common.collect.Iterators$11::get (12 bytes)
+Event: 225.896 Thread 0x00007f2acc117800 nmethod 4962 0x00007f2abdd95ad0 code [0x00007f2abdd95c20, 0x00007f2abdd95d50]
+Event: 225.896 Thread 0x00007f2acc117800 4959       3       org.gradle.api.internal.changedetection.state.NonNormalizedFileSnapshot::<init> (11 bytes)
+Event: 225.896 Thread 0x00007f2acc117800 nmethod 4959 0x00007f2abdd93dd0 code [0x00007f2abdd93f40, 0x00007f2abdd94170]
+Event: 225.896 Thread 0x00007f2acc117800 4960       3       org.gradle.api.internal.changedetection.state.RegularFileSnapshot::getType (4 bytes)
+Event: 225.896 Thread 0x00007f2acc117800 nmethod 4960 0x00007f2abdd93a90 code [0x00007f2abdd93c00, 0x00007f2abdd93d50]
+Event: 225.896 Thread 0x00007f2acc117800 4961       1       org.gradle.api.internal.changedetection.state.DirectoryFileSnapshot::getPath (5 bytes)
+Event: 225.896 Thread 0x00007f2acc117800 nmethod 4961 0x00007f2abdd937d0 code [0x00007f2abdd93920, 0x00007f2abdd93a30]
+Event: 225.896 Thread 0x00007f2acc117800 4963       3       org.gradle.api.internal.changedetection.state.DirectoryFileSnapshot::getType (4 bytes)
+Event: 225.896 Thread 0x00007f2acc117800 nmethod 4963 0x00007f2abdd93490 code [0x00007f2abdd93600, 0x00007f2abdd93750]
+Event: 225.896 Thread 0x00007f2acc117800 4964       3       org.gradle.api.internal.changedetection.state.DirectoryFileSnapshot::getContent (4 bytes)
+Event: 225.897 Thread 0x00007f2acc117800 nmethod 4964 0x00007f2abdd930d0 code [0x00007f2abdd93240, 0x00007f2abdd933f0]
+Event: 225.897 Thread 0x00007f2acc117800 4965       3       org.gradle.api.internal.changedetection.state.DirContentSnapshot::getInstance (4 bytes)
+Event: 225.897 Thread 0x00007f2acc117800 nmethod 4965 0x00007f2abdd92dd0 code [0x00007f2abdd92f20, 0x00007f2abdd93050]
+Event: 225.897 Thread 0x00007f2acc117800 4966       1       org.gradle.api.internal.changedetection.state.RegularFileSnapshot::getType (4 bytes)
+Event: 225.897 Thread 0x00007f2acc117800 nmethod 4966 0x00007f2abdd92b10 code [0x00007f2abdd92c60, 0x00007f2abdd92d70]
+Event: 225.897 Thread 0x00007f2acc117800 4967       1       org.gradle.api.internal.changedetection.state.AbstractNormalizedFileSnapshot::getSnapshot (5 bytes)
+Event: 225.897 Thread 0x00007f2acc117800 nmethod 4967 0x00007f2abdd92790 code [0x00007f2abdd928e0, 0x00007f2abdd929f0]
+Event: 225.897 Thread 0x00007f2acc117800 4968       3       com.esotericsoftware.kryo.io.Output::writeString (125 bytes)
+Event: 225.898 Thread 0x00007f2acc117800 nmethod 4968 0x00007f2abddaa1d0 code [0x00007f2abddaa3a0, 0x00007f2abddaa9f8]
+Event: 225.898 Thread 0x00007f2acc117800 4969       1       org.gradle.api.internal.changedetection.state.FileHashSnapshot::getContentMd5 (5 bytes)
+Event: 225.898 Thread 0x00007f2acc117800 nmethod 4969 0x00007f2abddaac90 code [0x00007f2abddaade0, 0x00007f2abddaaef0]
+Event: 225.898 Thread 0x00007f2acc117800 4970       3       org.gradle.internal.serialize.kryo.KryoBackedEncoder::writeString (23 bytes)
+Event: 225.898 Thread 0x00007f2acc117800 nmethod 4970 0x00007f2abddaaf50 code [0x00007f2abddab0e0, 0x00007f2abddab358]
+Event: 225.898 Thread 0x00007f2acc117800 4971       3       org.gradle.api.internal.changedetection.state.SnapshotMapSerializer::writeSnapshot (182 bytes)
+Event: 225.900 Thread 0x00007f2acc117800 nmethod 4971 0x00007f2abddab490 code [0x00007f2abddab7c0, 0x00007f2abddad438]
+Event: 225.900 Thread 0x00007f2acc115800 4972       4       com.esotericsoftware.kryo.io.Output::writeString (125 bytes)
+Event: 225.904 Thread 0x00007f2acc115800 nmethod 4972 0x00007f2abddb0b10 code [0x00007f2abddb0ca0, 0x00007f2abddb0fa8]
+Event: 225.904 Thread 0x00007f2acc115800 4973       4       org.gradle.internal.serialize.kryo.KryoBackedEncoder::writeByte (9 bytes)
+Event: 225.906 Thread 0x00007f2acc115800 nmethod 4973 0x00007f2abddb12d0 code [0x00007f2abddb1420, 0x00007f2abddb1548]
+Event: 225.906 Thread 0x00007f2acc117800 4974       3       com.esotericsoftware.kryo.io.Output::require (197 bytes)
+Event: 225.906 Thread 0x00007f2acc117800 nmethod 4974 0x00007f2abddaf2d0 code [0x00007f2abddaf580, 0x00007f2abddb0558]
+Event: 225.906 Thread 0x00007f2acc117800 4975       3       com.esotericsoftware.kryo.io.Output::writeUtf8Length (405 bytes)
+Event: 225.907 Thread 0x00007f2acc117800 nmethod 4975 0x00007f2abddae590 code [0x00007f2abddae780, 0x00007f2abddaee68]
+Event: 225.907 Thread 0x00007f2acc117800 4976       3       com.esotericsoftware.kryo.io.Output::writeString_slow (238 bytes)
+Event: 225.907 Thread 0x00007f2acc117800 nmethod 4976 0x00007f2abddb1690 code [0x00007f2abddb1860, 0x00007f2abddb1ef8]
+Event: 225.908 Thread 0x00007f2acc115800 4977       4       org.gradle.internal.serialize.kryo.KryoBackedEncoder::writeBytes (11 bytes)
+Event: 225.911 Thread 0x00007f2acc115800 nmethod 4977 0x00007f2abddade10 code [0x00007f2abddadf80, 0x00007f2abddae348]
+Event: 225.913 Thread 0x00007f2acc117800 4978       3       com.google.common.collect.RegularImmutableMap::get (60 bytes)
+Event: 225.913 Thread 0x00007f2acc117800 nmethod 4978 0x00007f2abddb4790 code [0x00007f2abddb4960, 0x00007f2abddb5088]
+Event: 225.913 Thread 0x00007f2acc117800 4979       3       com.google.common.collect.RegularImmutableList::listIterator (17 bytes)
+Event: 225.914 Thread 0x00007f2acc117800 nmethod 4979 0x00007f2abddb43d0 code [0x00007f2abddb4540, 0x00007f2abddb46e8]
+Event: 225.915 Thread 0x00007f2acc117800 4980       3       com.google.common.io.CountingOutputStream::write (22 bytes)
+Event: 225.915 Thread 0x00007f2acc117800 nmethod 4980 0x00007f2abddb3f50 code [0x00007f2abddb40c0, 0x00007f2abddb4308]
+Event: 225.917 Thread 0x00007f2acc117800 4981       1       org.gradle.api.internal.file.AbstractFileResolver::getPatternSetFactory (5 bytes)
+Event: 225.917 Thread 0x00007f2acc117800 nmethod 4981 0x00007f2abddb3c90 code [0x00007f2abddb3de0, 0x00007f2abddb3ef0]
+Event: 225.925 Thread 0x00007f2acc115800 4986       4       java.lang.ClassLoader::defineClass (43 bytes)
+Event: 225.936 Thread 0x00007f2acc117800 4984       3       java.util.Hashtable::<init> (114 bytes)
+Event: 225.937 Thread 0x00007f2acc117800 nmethod 4984 0x00007f2abddb5310 code [0x00007f2abddb5600, 0x00007f2abddb6a18]
+Event: 225.937 Thread 0x00007f2acc117800 4988       3       groovyjarjarasm.asm.ByteVector::putShort (52 bytes)
+Event: 225.937 Thread 0x00007f2acc117800 nmethod 4988 0x00007f2abddb3750 code [0x00007f2abddb38c0, 0x00007f2abddb3b08]
+Event: 225.937 Thread 0x00007f2acc117800 4987       3       org.codehaus.groovy.runtime.MetaClassHelper::getClassWithNullAndWrapper (28 bytes)
+Event: 225.937 Thread 0x00007f2acc117800 nmethod 4987 0x00007f2abddb2fd0 code [0x00007f2abddb3160, 0x00007f2abddb3650]
+Event: 225.937 Thread 0x00007f2acc117800 4985       3       java.util.Dictionary::<init> (5 bytes)
+Event: 225.937 Thread 0x00007f2acc117800 nmethod 4985 0x00007f2abddb2bd0 code [0x00007f2abddb2d40, 0x00007f2abddb2ef0]
+Event: 225.937 Thread 0x00007f2acc117800 4982       3       com.google.common.collect.Iterators$12::next (25 bytes)
+Event: 225.938 Thread 0x00007f2acc117800 nmethod 4982 0x00007f2abddb2710 code [0x00007f2abddb2880, 0x00007f2abddb2ae8]
+Event: 225.938 Thread 0x00007f2acc117800 4983       3       java.util.LinkedList::remove (15 bytes)
+Event: 225.938 Thread 0x00007f2acc117800 nmethod 4983 0x00007f2abddb7390 code [0x00007f2abddb7540, 0x00007f2abddb79b8]
+Event: 225.938 Thread 0x00007f2acc117800 4989  s    3       java.io.BufferedOutputStream::write (67 bytes)
+Event: 225.939 Thread 0x00007f2acc117800 nmethod 4989 0x00007f2abddb7b90 code [0x00007f2abddb7d60, 0x00007f2abddb8598]
+Event: 225.947 Thread 0x00007f2acc117800 4992       3       org.codehaus.groovy.reflection.CachedClass$3::initValue (5 bytes)
+Event: 225.947 Thread 0x00007f2acc117800 nmethod 4992 0x00007f2abddb2350 code [0x00007f2abddb24c0, 0x00007f2abddb2668]
+Event: 225.947 Thread 0x00007f2acc117800 4990       3       org.gradle.api.internal.AsmBackedClassGenerator$ClassBuilderImpl::addGetter (50 bytes)
+Event: 225.947 Thread 0x00007f2acc117800 nmethod 4990 0x00007f2abddb8850 code [0x00007f2abddb8a20, 0x00007f2abddb8f98]
+Event: 225.962 Thread 0x00007f2acc117800 4996       3       java.beans.Introspector::getTargetMethodInfo (252 bytes)
+Event: 225.963 Thread 0x00007f2acc117800 nmethod 4996 0x00007f2abddb9590 code [0x00007f2abddb9860, 0x00007f2abddba8e8]
+Event: 225.963 Thread 0x00007f2acc117800 5001   !   2       org.codehaus.groovy.reflection.CachedMethod::invoke (70 bytes)
+Event: 225.963 Thread 0x00007f2acc117800 nmethod 5001 0x00007f2abddbb010 code [0x00007f2abddbb1e0, 0x00007f2abddbb6c8]
+Event: 225.967 Thread 0x00007f2acc117800 5002       2       org.gradle.internal.event.AbstractBroadcastDispatch::<init> (10 bytes)
+Event: 225.967 Thread 0x00007f2acc117800 nmethod 5002 0x00007f2abddbba50 code [0x00007f2abddbbba0, 0x00007f2abddbbd10]
+Event: 225.968 Thread 0x00007f2acc117800 5004       2       java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1::next (5 bytes)
+Event: 225.969 Thread 0x00007f2acc117800 nmethod 5004 0x00007f2abddbbd90 code [0x00007f2abddbbf20, 0x00007f2abddbc1f8]
+Event: 225.969 Thread 0x00007f2acc117800 5005       2       java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1::next (20 bytes)
+Event: 225.969 Thread 0x00007f2acc117800 nmethod 5005 0x00007f2abddbc3d0 code [0x00007f2abddbc560, 0x00007f2abddbc838]
+Event: 226.000 Thread 0x00007f2acc115800 nmethod 4986 0x00007f2abddc17d0 code [0x00007f2abddc1ac0, 0x00007f2abddc3c30]
+Event: 226.000 Thread 0x00007f2acc115800 4991       4       java.util.AbstractCollection::addAll (42 bytes)
+Event: 226.002 Thread 0x00007f2acc115800 nmethod 4991 0x00007f2abddbe650 code [0x00007f2abddbe7a0, 0x00007f2abddbe8b8]
+Event: 226.002 Thread 0x00007f2acc115800 4995       4       java.lang.Class$MethodArray::add (72 bytes)
+Event: 226.005 Thread 0x00007f2acc115800 nmethod 4995 0x00007f2abddbcb10 code [0x00007f2abddbcc80, 0x00007f2abddbcf78]
+Event: 226.005 Thread 0x00007f2acc115800 4993       4       org.codehaus.groovy.runtime.metaclass.MetaMethodIndex::addMethodToList (298 bytes)
+Event: 226.030 Thread 0x00007f2acc115800 nmethod 4993 0x00007f2abddc6890 code [0x00007f2abddc6c20, 0x00007f2abddc80b8]
+Event: 226.030 Thread 0x00007f2acc115800 4999       4       java.beans.MethodRef::get (91 bytes)
+Event: 226.043 Thread 0x00007f2acc115800 nmethod 4999 0x00007f2abddc93d0 code [0x00007f2abddc9580, 0x00007f2abddc9d18]
+Event: 226.043 Thread 0x00007f2acc115800 5000       4       org.codehaus.groovy.reflection.CachedMethod::getReturnType (8 bytes)
+Event: 226.044 Thread 0x00007f2acc115800 nmethod 5000 0x00007f2abdd6c950 code [0x00007f2abdd6caa0, 0x00007f2abdd6cb18]
+Event: 226.044 Thread 0x00007f2acc115800 4997       4       sun.reflect.misc.ReflectUtil::isNonPublicProxyClass (51 bytes)
+Event: 226.053 Thread 0x00007f2acc115800 nmethod 4997 0x00007f2abddbeed0 code [0x00007f2abddbf060, 0x00007f2abddbf628]
+Event: 226.053 Thread 0x00007f2acc115800 4994       4       org.codehaus.groovy.runtime.metaclass.MetaMethodIndex::isNonRealMethod (55 bytes)
+Event: 226.055 
